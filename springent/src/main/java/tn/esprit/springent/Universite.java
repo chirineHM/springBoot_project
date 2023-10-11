@@ -14,5 +14,7 @@ public class Universite {
     private String nomuni;
     @Column(name = "adresse")
     private String adresse;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "foyer_id")
+    private Foyer foyer;
 }

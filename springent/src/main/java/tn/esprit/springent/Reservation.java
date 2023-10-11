@@ -2,6 +2,8 @@ package tn.esprit.springent;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 @Entity
 @Table(name = "Reservation")
 public class Reservation {
@@ -15,4 +17,17 @@ public class Reservation {
     @Column(name = "estvalide")
     private Boolean estvalide;
 
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "etu_res",
+            joinColumns = @JoinColumn(name = "idres"),
+            inverseJoinColumns = @JoinColumn(name = "idEtudiant"))
+      private Set<Etudiant> etudiants = new HashSet<>();
+
+
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "chambre_id")
+    private Chambre chambre;
 }

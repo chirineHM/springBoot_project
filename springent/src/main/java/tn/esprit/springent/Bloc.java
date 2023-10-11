@@ -1,7 +1,7 @@
 package tn.esprit.springent;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 
 @Entity
 @Table(name = "Bloc")
@@ -15,4 +15,11 @@ public class Bloc {
     private String nomBloc;
     @Column(name = "capaciteBloc")
     private Long capaciteBloc;
-    }
+    @OneToMany(mappedBy = "bloc", cascade = CascadeType.ALL)
+    private List <Chambre> chambres;
+    @ManyToOne
+    @JoinColumn(name = "foyer_id")
+    private Foyer foyer;
+
+
+}
