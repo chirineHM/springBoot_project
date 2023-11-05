@@ -28,6 +28,10 @@ public class Reservation {
 
 
     @ManyToOne
-    @JoinColumn(name = "chambre_id")
+    @JoinTable(name = "chambre_res",
+            joinColumns = @JoinColumn(name = "idres"),
+            inverseJoinColumns = @JoinColumn(name = "chambre_id"))
+
+
     private Chambre chambre;
 }
